@@ -1,0 +1,39 @@
+server:
+  port: 8087
+
+spring:
+  profiles:
+    active: test
+  application:
+    name: web
+
+
+  datasource:
+    name: datasource
+    url: jdbc:mysql://192.168.199.113:3306/detalase?useSSL=false&autoReconnect=true&allowMultiQueries=true&characterEncoding=utf8
+    username: dse_user
+    password: dse_user
+    driver-class-name: com.mysql.jdbc.Driver
+
+
+
+
+  cloud:
+    consul:
+      host: 192.168.199.79
+      port: 8500
+      healthCheckInterval: 15s
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+mybatis:
+  basepackage: com.test.web.mapper
+  xmlLocation: classpath:mapper/**/*.xml
+  mapper-locations: "classpath*:mapper/*.xml"
+
+

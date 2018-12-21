@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.web.mapper.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.test.web.entity.Product" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="ref_spu_id" property="refSpuId" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="brand" property="brand" jdbcType="VARCHAR" />
+    <result column="category_id1" property="categoryId1" jdbcType="INTEGER" />
+    <result column="category_name1" property="categoryName1" jdbcType="VARCHAR" />
+    <result column="category_id2" property="categoryId2" jdbcType="INTEGER" />
+    <result column="category_name2" property="categoryName2" jdbcType="VARCHAR" />
+    <result column="category_id3" property="categoryId3" jdbcType="INTEGER" />
+    <result column="category_name3" property="categoryName3" jdbcType="VARCHAR" />
+    <result column="category_id4" property="categoryId4" jdbcType="INTEGER" />
+    <result column="category_name4" property="categoryName4" jdbcType="VARCHAR" />
+    <result column="warrantyType" property="warrantytype" jdbcType="INTEGER" />
+    <result column="video_url" property="videoUrl" jdbcType="VARCHAR" />
+    <result column="is_battery" property="isBattery" jdbcType="INTEGER" />
+    <result column="is_flammable" property="isFlammable" jdbcType="INTEGER" />
+    <result column="is_liquid" property="isLiquid" jdbcType="INTEGER" />
+    <result column="is_sensitive" property="isSensitive" jdbcType="INTEGER" />
+    <result column="is_sale" property="isSale" jdbcType="INTEGER" />
+    <result column="vendorCode" property="vendorcode" jdbcType="VARCHAR" />
+    <result column="vendorName" property="vendorname" jdbcType="VARCHAR" />
+    <result column="originCode" property="origincode" jdbcType="VARCHAR" />
+    <result column="notice" property="notice" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="TIMESTAMP" />
+  </resultMap>
+</mapper>

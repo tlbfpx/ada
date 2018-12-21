@@ -1,0 +1,22 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.test.web.config.Test2Config",
+      "name": "tt",
+      "type": "com.test.web.config.Test2Config"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.test.web.config.Test2Config",
+      "name": "tt.name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.test.web.config.Test2Config",
+      "name": "tt.password",
+      "type": "java.lang.String"
+    }
+  ]
+}

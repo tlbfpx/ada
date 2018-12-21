@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <property name="rootPath" value="/opt/logs/detalase/detalase-gateway"/>
+    <property name="baseFile" value="detalase-gateway"></property>
+    <property name="log.root.level" value="INFO"></property>
+    <property name="console_log_partern"
+              value="%red(%d{yyyy-MM-dd HH:mm:ss}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger{10}) - %cyan(%msg%n)"/>
+
+    <!-- 控制台输出日志 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--<pattern>[%date{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] %-5level [%logger{60}] %msg %n</pattern>-->
+            <pattern>${console_log_partern}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- 文件输出日志 (文件大小策略进行文件输出，每天产生一个日志文件给异常监控平台进行分析) -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${rootPath}/${baseFile}.log</File>
+        <!-- 日志文件rolling策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${rootPath}/${baseFile}_%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxHistory>30</maxHistory>
+            <!-- 按时间滚动的同时，按文件大小来滚动 -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <!-- 日志输出格式 -->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%date表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>[%date{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] %-5level [%logger{60}] %msg %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- 文件输出日志 (文件大小策略进行文件输出，每天产生一个日志文件给异常监控平台进行分析) -->
+    <appender name="ERRORFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${rootPath}/${baseFile}_error.log</File>
+        <!-- 日志文件rolling策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${rootPath}/${baseFile}_error_%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxHistory>30</maxHistory>
+            <!-- 按时间滚动的同时，按文件大小来滚动生成 -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!-- 日志输出格式 -->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>[%date{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] %-5level [%logger{60}] %msg %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>10000</queueSize>
+        <appender-ref ref="FILE"/>
+    </appender>
+
+    <logger name="org" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="ASYNC"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="ERRORFILE"/>
+    </logger>
+
+    <logger name="java" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="ASYNC"/>
+        <appender-ref ref="ERRORFILE"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="com" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="ASYNC"/>
+        <appender-ref ref="ERRORFILE"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="com.ezbuy" additivity="false">
+        <level value="debug"/>
+        <appender-ref ref="ASYNC"/>
+        <appender-ref ref="ERRORFILE"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <root level="${log.root.level}">
+        <appender-ref ref="ASYNC"/>
+        <appender-ref ref="ERRORFILE"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>

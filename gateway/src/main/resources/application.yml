@@ -1,0 +1,41 @@
+spring:
+  profiles:
+    active: test
+  application:
+    name: detalase-gateway
+
+
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: web
+        uri: lb://web
+        predicates:
+        - Path=/api/**
+        filters:
+        - StripPrefix=1
+
+    consul:
+      host: 192.168.199.79
+      port: 8500
+      healthCheckInterval: 15s
+server:
+  port: 9095
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+
+apollo:
+  bootstrap:
+    enabled: true
+
+
