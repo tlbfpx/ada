@@ -1,8 +1,0 @@
-/Users/ezbuy/Projects/ada/gateway/src/main/java/com/test/gateway/filter/LanguageFilter.java
-/Users/ezbuy/Projects/ada/gateway/src/main/java/com/test/gateway/filter/CorsConfig.java
-/Users/ezbuy/Projects/ada/gateway/src/main/java/com/test/gateway/filter/BodyHandlerServerHttpResponseDecorator.java
-/Users/ezbuy/Projects/ada/gateway/src/main/java/com/test/gateway/filter/WrapperResponse2GlobalFilter.java
-/Users/ezbuy/Projects/ada/gateway/src/main/java/com/test/gateway/filter/BodyHandlerFunction.java
-/Users/ezbuy/Projects/ada/gateway/src/main/java/com/test/gateway/filter/PrintParameterFilter.java
-/Users/ezbuy/Projects/ada/gateway/src/main/java/com/test/gateway/GatewayApplication.java
-/Users/ezbuy/Projects/ada/gateway/src/main/java/com/test/gateway/filter/WrapperResponseGlobalFilter.java
